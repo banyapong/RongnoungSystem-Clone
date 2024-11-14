@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% block title %}{{ user.firstname }} {{ user.lastname }} Inbox{% endblock %}
+{% block content %}
+<style>
+    .inbox-container {
+    font-family: Arial, sans-serif;
+    color: #7e6b5a;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 700px;
+}
+
+.inbox-title {
+    font-size: 36px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.email-list {
+    background-color: #f1e9dd;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.email-header {
+    display:flex;
+    justify-content:space-between;
+    background-color: #e0ddd3;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.email-item-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.email-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #d4ccb8;
+    margin-top: 10px;
+    padding: 12px;
+    border-radius: 5px;
+}
+
+.no-emails {
+    margin-top: 20px;
+}
+
+.email-item:hover {
+    background-color: #e8e4df;
+}
+
+.email-item input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center; /* Center-aligns buttons horizontally */
+    gap: 10px; /* Space between buttons */
+    margin-top: 20px; /* Adjusts spacing from other elements */
+}
+
+.btn {
+    display: inline-block;
+    background-color: #d4ccb8;
+    color: #7e6b5a;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+</style>
+<script>
+    function confirmDelete() {
+        const checkboxes = document.querySelectorAll("input[name='email_ids']:checked");
+        if (checkboxes.length === 0) {
+            alert("Please select at least one email to delete.");
+            return false;
+        }
+    
+        return confirm("Are you sure you want to delete the selected email(s)? This action cannot be undone.");
+    }
+    
+    function toggleAllCheckboxes(source) {
+        const checkboxes = document.querySelectorAll("input[name='email_ids']");
+        checkboxes.forEach(checkbox => checkbox.checked = source.checked);
+    }
+</script>
+
+<div class="inbox-container">
+<form method="POST" action="{{ url_for('delete_multiple_emails') }}" onsubmit="return confirmDelete()">
+    <h1 class="inbox-title">{{ user.firstname }} {{ user.lastname }}'s Inbox</h1>
+    
+    <div class="email-list">
+        <!-- Header Row -->
+        <div class="email-header">
+            <input type="checkbox" id="check-all" onclick="toggleAllCheckboxes(this)">
+            <span class="from">From</span>
+            <span class="subject">Subject</span>
+            <span class="date">Date</span>
+        </div>
+
+        <!-- Email Items -->
+        {% if emails %}
+            {% for email in emails %}
+                <a href="{{ url_for('view_email', email_id=email._id) }}" class="email-item-link">
+                    <div class="email-item">
+                        <input type="checkbox" name="email_ids" value="{{ email._id }}" />
+                        <span>{{ email.sender }}</span>
+                        <span>{{ email.subject }}</span>
+                        <span>{{ email.date }}</span>
+                    </div>
+                </a>
+            {% endfor %}
+        {% else %}
+            <p class="no-emails">No incoming emails.</p>
+        {% endif %}
+    </div>
+</div>
+<div class="button-container">
+    <button type="submit" class="btn delete-btn">🗑️ Delete Selected</button>
+    <a class="btn compose-btn" href="{{ url_for('compose_email') }}">✏️ Compose New Email</a>
+</div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ email.subject }}{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+    }
+
+    .container {
+        width: 80%;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    p {
+        margin-bottom: 10px;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .btn-danger {
+        background-color: #f44336;
+    }
+
+
+    .button-container {
+    display: flex;
+    justify-content: left; /* Center-aligns buttons horizontally */
+    gap: 10px; /* Space between buttons */
+    margin-top: 20px; /* Adjusts spacing from other elements */
+    margin-left: 185px;
+}
+
+    .btn-back {
+    display: inline-block;
+    justify-content: center;
+    background-color: #d4ccb8;
+    color: #7e6b5a;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+</style>
+<script>
+    function confirmDelete() {
+        return confirm("Are you sure you want to delete? This action cannot be undone.");
+    }
+</script>
+
+<div class="container">
+    <h1>{{ email.subject }}</h1>
+    <p><strong>From:</strong> {{ email.sender }}</p>
+    <p><strong>Recipient:</strong> {{ email.recipient }}</p>
+    <p><strong>Date:</strong> {{ email.date }}</p>
+    <p><strong>Body:</strong></p>
+    <p>{{ email.body }}</p>
+
+    <!-- Display logged-in user's information -->
+<p><strong>User:</strong> {{ user.firstname }} {{ user.lastname }}</p>
+<!-- Delete Email Form -->
+<form method="POST" action="{{ url_for('delete_email', email_id=email._id)}}" onsubmit="return confirmDelete()">
+    <button type="submit" class="btn btn-danger">Delete Email</button>
+</form>
+
+</div>
+
+<div class="button-container">
+<a class="btn-back" href="{{ url_for('user', id=session['user_id']) }}">Back</a>
+</div>
+{% endblock %}

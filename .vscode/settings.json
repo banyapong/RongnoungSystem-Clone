@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/84bbbbc7-5509-486a-af21-7fc5c7a4596e/resourceGroups/CS436/providers/Microsoft.Web/sites/FinalCDEX",
+    "appService.deploySubpath": "."
+}

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<style>
+    /* Login text */
+        .login-text {
+            margin: 20px 0;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            color: #a59180;
+        }
+    /* Login box styles */
+        .login-box {
+            background-color: #f5f5f5;
+            padding: 30px 40px;
+            border-radius: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            margin: 0 auto;
+        }
+    /* Input field styles */
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 10px 40px 10px 40px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            font-size: 14px;
+            background-color: #ffffff;
+            color: #333;
+        }
+        .input-group i {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            transform: translateY(-50%);
+            color: #ccc;
+            font-size: 16px;
+        }
+    /* Button styles */
+        .buttons {
+            display: flex;
+            justify-content:center;
+        }
+        .buttons button {
+            width: 100%;
+            padding: 10px 40px 10px 40px;
+            border-radius: 20px;
+            border: none;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .buttons .login-btn {
+            background-color: #a59180;
+            color: white;
+        }
+</style>
+</div>
+<!-- Login text -->
+<p class="login-text">Sign-In to App</p>
+<!-- Login box -->
+<form action="#" method="post">
+    <div class="login-box">
+        <div class="input-group">
+            <i class="fa fa-user"></i>
+            <p><input type="text" name="username" placeholder="Username" required></p>
+        </div>
+        <div class="input-group">
+            <i class="fa fa-lock"></i>
+            <input type="password" name="password" placeholder="Password" required>
+        </div>
+        <div class="buttons">
+            <button class="login-btn">Log in</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

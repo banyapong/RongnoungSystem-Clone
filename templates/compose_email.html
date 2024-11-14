@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% block title %}Compose New Email{% endblock %}
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: white;
+        color: #333;
+    }
+
+    .container {
+        width: 80%;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        color: #333;
+        margin-bottom: 20px;
+        font-size: 24px;
+    }
+
+    p {
+        margin-bottom: 10px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    button, .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        border: none;
+        font-weight: bold;
+    }
+
+    .btn-danger {
+        background-color: #f44336;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: space-between; 
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .btn-back {
+        background-color: #d4ccb8;
+        color: #7e6b5a;
+        font-weight: bold;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    /* For smaller screens */
+    @media (max-width: 768px) {
+        .container {
+            width: 90%;
+            padding: 15px;
+        }
+
+        button, .btn {
+            width: 100%;
+            margin-top: 10px;
+        }
+    }
+</style>
+
+<div class="container">
+    <h1>Compose New Email</h1>
+    <form method="POST">
+        <div class="form-group">
+            <label for="recipient">Recipient:</label>
+            <input type="email" id="recipient" name="recipient" required>
+        </div>
+
+        <div class="form-group">
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" name="subject" required>
+        </div>
+
+        <div class="form-group">
+            <label for="body">Body:</label>
+            <textarea id="body" name="body" rows="5" required></textarea>
+        </div>
+
+        <div class="button-container">
+            <button type="submit" class="btn">Send</button>
+            <a href="{{ url_for('user', id=session['user_id']) }}" class="btn-back">Back</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

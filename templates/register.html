@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<style>
+    /* Register text */
+        .register-text {
+            margin: 20px 0;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            color: #a59180;
+        }
+    /* Register box styles */
+        .register-box {
+            background-color: #f5f5f5;
+            padding: 30px 40px;
+            border-radius: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        .register-box h2 {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+        }
+    /* Input field styles */
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 10px 40px 10px 40px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            font-size: 14px;
+            background-color: #ffffff;
+            color: #333;
+        }
+        .input-group i {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            transform: translateY(-50%);
+            color: #ccc;
+            font-size: 16px;
+        }
+    /* Button styles */
+        .buttons {
+            display: flex;
+            justify-content: center;
+        }
+        .buttons button {
+            padding: 10px 80px;
+            border-radius: 20px;
+            border: none;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .buttons .register-btn {
+            background-color: #a59180;
+            color: white;
+            
+        }
+</style>
+</div>
+<!-- Register text -->
+<p class="register-text">Create an Account</p>
+<!-- Register box -->
+<form action="#" method="POST">
+    <div class="register-box">
+        <div class="input-group">
+            <i class="fa fa-user"></i>
+            <input type="text" name="username" id="username" placeholder="Username" required>
+        </div>
+        <div class="input-group">
+            <i class="fa fa-user"></i>
+            <input type="text" name="email" id="email" placeholder="Email" required>
+        </div>
+        <div class="input-group">
+            <i class="fa fa-user"></i>
+            <input type="text" name="firstname" id="firstname" placeholder="First name" required>
+        </div>
+        <div class="input-group">
+            <i class="fa fa-user"></i>
+            <input type="text" name="lastname" id="lastname" placeholder="Last name" required>
+        </div>
+        <div class="input-group">
+            <i class="fa fa-lock"></i>
+            <input type="password" name="password" id="password" placeholder="Password" required>
+        </div>
+        <div class="input-group">
+            <i class="fa fa-lock"></i>
+            <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required>
+        </div>
+        <div class="buttons">
+            <button class="register-btn">Register</button>
+        </div>
+    </div>
+</form>
+{% endblock %}
